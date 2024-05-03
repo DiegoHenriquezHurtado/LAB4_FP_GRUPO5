@@ -82,8 +82,10 @@
     </div>
 
 
-    <button type="submit" class="btn btn-primary">Guardar</button>
-    <a th:href="@{/empleados}" class="btn btn-danger">Cancelar</a>
+    <button type="submit" class="btn btn-primary"
+            th:text="${employees.employeeId==0? 'Guardar':'Actualizar'}">Actualizar
+    </button>
+    <a th:href="@{/employee}" class="btn btn-danger">Cancelar</a>
 </form>
 </body>
 </html>
