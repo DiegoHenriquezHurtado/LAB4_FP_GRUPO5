@@ -3,6 +3,7 @@ import com.example.lab4_fp_grupo5.entity.Employees;
 import com.example.lab4_fp_grupo5.repository.DepartmentsRepository;
 import com.example.lab4_fp_grupo5.repository.EmployeesRepository;
 import com.example.lab4_fp_grupo5.repository.JobsRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,15 +57,15 @@ public class EmployeeController {
             return "employee/Frm";
         }else {
 
-            if (employees.getEmployeeid() == 0) {
+            if (employees.getEmployeeId() == 0) {
                 attr.addFlashAttribute("msg", "Empleado creado exitosamente");
-                employees.setHiredate(new Date());
+                employees.setHireDate(new Date());
                 employeesRepository.save(employees);
                 return "redirect:/employee";
             } else {
 
                 try {
-                    employees.setHiredate(new SimpleDateFormat("yyyy-MM-dd").parse(fechaContrato));
+                    employees.setHireDate(new SimpleDateFormat("yyyy-MM-dd").parse(fechaContrato));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }

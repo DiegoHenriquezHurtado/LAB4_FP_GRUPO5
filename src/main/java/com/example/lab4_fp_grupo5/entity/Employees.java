@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 
 @Entity
@@ -45,7 +46,7 @@ public class Employees {
 
 
     @Column(name="hire_date",nullable = true)
-    private String hireDate;
+    private Date hireDate;
 
     @NotBlank
     @NotNull
