@@ -54,7 +54,7 @@ public class EmployeeController {
         if(bindingResult.hasErrors()){
             model.addAttribute("listaJobs", jobsRepository.findAll());
             model.addAttribute("listaJefes", employeesRepository.findAll());
-            model.addAttribute("listaDeps", departmentsRepository.findAll());
+            model.addAttribute("listaDep", departmentsRepository.findAll());
             return "employee/Frm";
         }else {
 
