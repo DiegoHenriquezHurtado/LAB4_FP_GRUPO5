@@ -48,8 +48,10 @@ public class Employees {
     @Column(name="hire_date",nullable = true)
     private Date hireDate;
 
-    @NotBlank
+
     @NotNull
+    @Positive
+    @Digits(integer = 8, fraction = 2)
     @Column(name="salary",nullable = true)
     private BigDecimal salary;
 

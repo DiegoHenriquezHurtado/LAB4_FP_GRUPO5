@@ -1,9 +1,13 @@
 package com.example.lab4_fp_grupo5.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 
 @Entity
+@Getter
+@Setter
 @Table(name="departments")
 public class Departments {
 

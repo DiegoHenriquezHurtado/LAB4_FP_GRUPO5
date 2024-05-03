@@ -11,8 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.jws.WebParam;
-import javax.validation.Valid;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -40,8 +39,10 @@ public class EmployeeController {
     }
 
     @GetMapping("/new")
-    public String nuevoEmployeeForm() {
-        //COMPLETAR
+    public String nuevoEmployeeForm(Model model) {
+        model.addAttribute("listaJefes",employeesRepository.findAll());
+        model.addAttribute("listaJobs",jobsRepository.findAll());
+        model.addAttribute("listaDep",departmentsRepository.findAll());
         return "employee/Frm";
     }
 
@@ -53,7 +54,7 @@ public class EmployeeController {
         if(bindingResult.hasErrors()){
             model.addAttribute("listaJobs", jobsRepository.findAll());
             model.addAttribute("listaJefes", employeesRepository.findAll());
-            model.addAttribute("listaDepartments", departmentsRepository.findAll());
+            model.addAttribute("listaDeps", departmentsRepository.findAll());
             return "employee/Frm";
         }else {
 
@@ -77,11 +78,11 @@ public class EmployeeController {
         }
     }
 
-    @GetMapping("/edit")
-    public String editarEmployee() {
+    //@GetMapping("/edit")
+    //public String editarEmployee() {
 
         //COMPLETAR
-    }
+    //}
 
     @GetMapping("/delete")
     public String borrarEmpleado(Model model,
@@ -98,10 +99,10 @@ public class EmployeeController {
 
     }
 
-    @PostMapping("/search")
-    public String buscar (){
+    //@PostMapping("/search")
+    //public String buscar (){
 
         //COMPLETAR
-    }
+    //}
 
 }

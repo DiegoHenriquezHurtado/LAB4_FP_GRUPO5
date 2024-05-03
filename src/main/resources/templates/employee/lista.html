@@ -1,48 +1,69 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <title>Lista de Empleados</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+          crossorigin="anonymous">
+    <title>Empleados</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Lista de Empleados</h1>
-        <a class="btn btn-primary mt-4 mb-4" th:href="@{}">Nuevo Empleado</a>  <!-- COMPLETAR -->
-        <!-- COMPLETAR -->
-        </form>
-        <!-- COMPLETAR -->
-             <table class="table">  <!-- COMPLETAR -->
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Cargo</th>
-                    <th>Departamento</th>
-                    <th>Ciudad</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="employee, info : ${listaEmployee}">
-                    <td th:text="${info.index + 1}"></td>
-                    <td th:text="${employee.firstname}"></td>
-                    <td th:text="${employee.lastname}"></td>
-                    <td th:text="${employee.jobid.jobtitle}"></td>
-                    <td th:text="${employee.departmentid.departmentname}"></td>
-                    <td th:text="${employee.departmentid.locationid.city}"></td>
-                    <td><a class="btn btn-primary" th:href="@{'/employee/edit' + '?id=' + ${employee.employeeid}}">Editar</a>
-                    </td>
-                    <td><a class="btn btn-danger" th:href="@{'/employee/delete' + '?id=' + ${employee.employeeid}}">Borrar</a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+<nav class="navbar navbar-expand" style="background-color: #c1d6fa;">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{'/'}">
+            <h1>Recursos Humanos - GTICS</h1>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{'/employee'}">Empleados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/history'}">Historial</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/Search'}">Reportes</a>
+                </li>
+            </ul>
         </div>
-    </body>
+    </div>
+</nav>
+<div class="container">
+    <div style="text-align: center;"><h1>Empleados Totales</h1></div>
+    <a class="btn btn-primary mt-4 mb-4" th:href="@{'/employee/new'}">Nuevo Empleado</a>
+    <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
+    <table class="table table-striped">
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Puesto/Cargo</th>
+            <th>Departamento</th>
+            <th>Ciudad</th>
+
+            <th></th>
+            <th></th>
+        </tr>
+        <tr th:each="employee,obj: ${listaEmployee}">
+            <td th:text="${obj.index + 1}"></td>
+            <td th:text="${employee.firstName}"></td>
+            <td th:text="${employee.lastName}"></td>
+            <td th:text="${employee.jobs.jobTitle}"></td>
+            <td th:text="${employee.departments.departmentname}"></td>
+            <td th:text="${employee.departments.locationid.city}"></td>
+            <td><a class="btn btn-primary" th:href="@{'/employee/edit' + '?id=' + ${employee.employeeId}}">Editar</a>
+            </td>
+            <td><a class="btn btn-danger" th:href="@{'/employee/delete' + '?id=' + ${employee.employeeId}}">Borrar</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+</body>
 </html>
+
+
+
