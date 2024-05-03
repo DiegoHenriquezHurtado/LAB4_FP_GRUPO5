@@ -1,8 +1,13 @@
 package com.example.lab4_fp_grupo5.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 
 @Entity
+@Getter
+@Setter
 @Table(name = "countries")
 public class Countries {
 
@@ -15,27 +20,5 @@ public class Countries {
     @JoinColumn(name = "region_id")
     private Regions regionid;
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getCountryname() {
-        return countryname;
-    }
-
-    public void setCountryname(String countryname) {
-        this.countryname = countryname;
-    }
-
-    public Regions getRegionid() {
-        return regionid;
-    }
-
-    public void setRegionid(Regions regionid) {
-        this.regionid = regionid;
-    }
 }

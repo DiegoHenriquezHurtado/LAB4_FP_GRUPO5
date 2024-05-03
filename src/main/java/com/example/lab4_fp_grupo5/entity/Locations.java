@@ -1,8 +1,14 @@
 package com.example.lab4_fp_grupo5.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+
 
 @Entity
+@Getter
+@Setter
 @Table(name = "locations")
 public class Locations {
 
@@ -21,51 +27,5 @@ public class Locations {
     @JoinColumn(name = "country_id")
     private Countries countryid;
 
-    public int getid() {
-        return id;
-    }
 
-    public void setLocationid(int id) {
-        this.id = id;
-    }
-
-    public String getStreetaddress() {
-        return streetaddress;
-    }
-
-    public void setStreetaddress(String streetaddress) {
-        this.streetaddress = streetaddress;
-    }
-
-    public String getPostalcode() {
-        return postalcode;
-    }
-
-    public void setPostalcode(String postalcode) {
-        this.postalcode = postalcode;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getStateprovince() {
-        return stateprovince;
-    }
-
-    public void setStateprovince(String stateprovince) {
-        this.stateprovince = stateprovince;
-    }
-
-    public Countries getCountryid() {
-        return countryid;
-    }
-
-    public void setCountryid(Countries countryid) {
-        this.countryid = countryid;
-    }
 }

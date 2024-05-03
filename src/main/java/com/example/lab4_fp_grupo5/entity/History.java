@@ -1,9 +1,14 @@
 package com.example.lab4_fp_grupo5.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.sql.Date;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "job_history")
 public class History {
 
@@ -25,63 +30,5 @@ public class History {
     @JoinColumn(name = "department_id")
     private Departments departmentid;
 
-    public int getJobhistoryid() {
-        return id;
-    }
 
-    public void setJobhistoryid(int id) {
-        this.id = id;
-    }
-
-    public Employees getEmployeeid() {
-        return employeeid;
-    }
-
-    public void setEmployeeid(Employees employeeid) {
-        this.employeeid = employeeid;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Date getHiredate() {
-        return hiredate;
-    }
-
-    public void setHiredate(java.util.Date hiredate) {
-        this.hiredate = (Date) hiredate;
-    }
-
-    public Date getEnddate() {
-        return enddate;
-    }
-
-    public void setEnddate(Date enddate) {
-        this.enddate = enddate;
-    }
-
-    public Jobs getJobid() {
-        return jobid;
-    }
-
-    public void setJobid(Jobs jobid) {
-        this.jobid = jobid;
-    }
-
-    public Departments getDepartmentid() {
-        return departmentid;
-    }
-
-    public void setDepartmentid(Departments departmentid) {
-        this.departmentid = departmentid;
-    }
-
-    public long setHiredate(long time) {
-        return 0;
-    }
 }
