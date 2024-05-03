@@ -39,7 +39,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/new")
-    public String nuevoEmployeeForm(Model model) {
+    public String nuevoEmployeeForm(Model model, @ModelAttribute("employees") Employees employees) {
         model.addAttribute("listaJefes",employeesRepository.findAll());
         model.addAttribute("listaJobs",jobsRepository.findAll());
         model.addAttribute("listaDep",departmentsRepository.findAll());

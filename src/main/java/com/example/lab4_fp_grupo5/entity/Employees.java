@@ -48,7 +48,6 @@ public class Employees {
     @Column(name="hire_date",nullable = true)
     private Date hireDate;
 
-
     @NotNull
     @Positive
     @Digits(integer = 8, fraction = 2)

@@ -9,33 +9,34 @@
     <title>Nuevo Empleado</title>
 </head>
 <body class="container">
-<h2>Nuevo Empleado</h2><hr />
-<form method="post" th:action="@{/employee/save}">
+<h2 th:text="${employees.employeeId==0? 'Nuevo Empleado':'Editar Empleado'}">Editar Empleado</h2>
+<form method="post" th:action="@{/employee/save}" th:object="${employees}">
 
+    <input th:field="*{employeeId}" type="hidden"/>
 
     <div class="row">
         <div class="form-group col-6">
             <label for="nombre">Nombre</label>
-            <input th:field="*{employees.firstName}" th:classappend="${#fields.hasErrors('firstName')?'is-invalid':''}" id= "nombre" type="text" class="form-control"  name="firstName">
-            <div class="invalid-feedback" th:if="${#fields.hasErrors('firstName')}" th:errors="*{employees.firstName}"></div>
+            <input th:field="*{firstName}" th:classappend="${#fields.hasErrors('firstName')?'is-invalid':''}" id= "nombre" type="text" class="form-control"  >
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
         </div>
         <div class="form-group col-6">
             <label for="apellido">Apellido</label>
-            <input th:field="*{employees.lastName}" th:classappend="${#fields.hasErrors('lastName')?'is-invalid':''}" id= "apellido" type="text" class="form-control"  name="lastName">
-            <div class="invalid-feedback" th:if="${#fields.hasErrors('lastName')}"></div>
+            <input th:field="*{lastName}" th:classappend="${#fields.hasErrors('lastName')?'is-invalid':''}" id= "apellido" type="text" class="form-control" >
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
         </div>
     </div>
 
     <div class="row">
         <div class="form-group col-6">
             <label for="correo">Correo electrónico</label>
-            <input th:field="*{employees.email}" th:classappend="${#fields.hasErrors('email')?'is-invalid':''}" id= "correo" type="text" class="form-control"  name="email">
-            <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}"></div>
+            <input th:field="*{email}" th:classappend="${#fields.hasErrors('email')?'is-invalid':''}" id= "correo" type="text" class="form-control"  >
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
         </div>
         <div class="form-group col-6">
             <label for="password">Contraseña</label>
-            <input th:field="*{employees.password}" th:classappend="${#fields.hasErrors('password')?'is-invalid':''}" id= "password" type="text" class="form-control"  name="password">
-            <div class="invalid-feedback" th:if="${#fields.hasErrors('password')}"></div>
+            <input th:field="*{password}" th:classappend="${#fields.hasErrors('password')?'is-invalid':''}" id= "password" type="text" class="form-control"  >
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
         </div>
     </div>
 
@@ -45,7 +46,7 @@
         <div class="form-group col-6">
             <label for="puesto">Puesto</label>
 
-            <select  id="puesto" name="idJob" class="form-select" >
+            <select  id="puesto" name="jobs" class="form-select" >
                 <option th:each="job : ${listaJobs}"
                         th:value="${job.jobId}"
                         th:text="${job.jobTitle}"
@@ -54,14 +55,15 @@
         </div>
         <div class="form-group col-6">
             <label for="sueldo">Sueldo</label>
-            <input id= "sueldo" type="text" class="form-control"  name="salary">
+            <input th:field="*{salary}" th:classappend="${#fields.hasErrors('salary')?'is-invalid':''}" id= "sueldo" type="text" class="form-control">
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></div>
         </div>
     </div>
 
     <div class="row">
         <div class="form-group col-6">
             <label for="jefe">Jefe</label>
-            <select  id="jefe" name="idManager" class="form-select" >
+            <select  id="jefe" name="manager" class="form-select" >
                 <option th:each="jefe : ${listaJefes}"
                         th:value="${jefe.employeeId}"
                         th:text="${jefe.firstName} + ' ' + ${jefe.lastName}"
@@ -70,7 +72,7 @@
         </div>
         <div class="form-group col-6">
             <label for="departamento">Departamento</label>
-            <select  id="departamento" name="idDep" class="form-select" >
+            <select  id="departamento" name="departments" class="form-select" >
                 <option th:each="dep : ${listaDep}"
                         th:value="${dep.id}"
                         th:text="${dep.departmentname}"
