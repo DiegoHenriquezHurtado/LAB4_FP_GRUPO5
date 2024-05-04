@@ -78,11 +78,22 @@ public class EmployeeController {
         }
     }
 
-    //@GetMapping("/edit")
-    //public String editarEmployee() {
+    @GetMapping("/edit")
+    public String editarEmployee(Model model, @RequestParam("id") int id,  @ModelAttribute("employees") Employees employees) {
 
-        //COMPLETAR
-    //}
+        Optional<Employees> optional = employeesRepository.findById(id);
+
+        if (optional.isPresent()) {
+            employees = optional.get();
+            model.addAttribute("employees", optional.get());
+            model.addAttribute("listaJefes",employeesRepository.findAll());
+            model.addAttribute("listaJobs",jobsRepository.findAll());
+            model.addAttribute("listaDep",departmentsRepository.findAll());
+            return "employee/Frm";
+        } else {
+            return "redirect:/employee";
+        }
+    }
 
     @GetMapping("/delete")
     public String borrarEmpleado(Model model,
